@@ -14,23 +14,19 @@ int main(){
         printf("Enter a number less than or equal to 1 to quit\n");
         printf("What score do you wish to enter: ");
         scanf("%d", &enter);
+        printf("\n%d can be achieved by:\n", enter);
         if(enter <= 1){
             exit = 0;
         }
         else{
-            scoreFinder(enter, 0, 0, 0, 0, 0);
+            scoreFinder(enter);
         }
     }
     printf("Quitting...");
 }
 
 
-int scoreFinder(int score, int count8param, int count7param, int count6param, int count3param, int count2param){
-    int count8 = count8param;
-    int count7 = count7param;
-    int count6 = count6param;
-    int count3 = count3param;
-    int count2 = count2param;
+int scoreFinder(int score){
     /*
     Types of scoring
     8a+7b+6c+3d+2e=score
@@ -39,13 +35,13 @@ int scoreFinder(int score, int count8param, int count7param, int count6param, in
 
 
    //METHOD Incremental Counting
-    for(int i = 0;i <= (score/8)+1;i++){
-        for(int j = 0; j <= (score/7)+1;j++){
-            for(int k = 0; k <= (score/6)+1; k++){
-                for(int l = 0; l <= (score/3)+1; l++){
-                    for(int m = 0; m <= (score/2)+1; m++){
-                        if(8*i+7*j+k*6+l*3+m*2 == score){
-                            printf("%d TD + 2pt, %d TD + FG, %d TD, %d 3pt FG, %d Safety\n", i, j, k, l, m);
+    for(int a = 0;a <= (score/8)+1;a++){ //we will only iterate as many times as we need to because of score/value+1
+        for(int b = 0; b <= (score/7)+1;b++){
+            for(int c = 0; c <= (score/6)+1; c++){
+                for(int d = 0; d <= (score/3)+1; d++){
+                    for(int e = 0; e <= (score/2)+1; e++){
+                        if(a*8+b*7+c*6+d*3+e*2 == score){ //If all the added values for our loops equal the intened score, print
+                            printf("%d TD + 2pt, %d TD + FG, %d TD, %d 3pt FG, %d Safety\n", a, b, c, d, e);
                         }
                     }
                 }
