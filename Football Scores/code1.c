@@ -6,7 +6,6 @@ Lab04
 Goal: To take in a NFL score, and output all possible combinations for a given score
 */
 #include <stdio.h>
-#include <windows.h>
 int main(){
     int enter;
     int exit = 1;
