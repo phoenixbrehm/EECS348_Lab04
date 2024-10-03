@@ -3,7 +3,7 @@ Phoenix Brehm
 EECS 348
 Th 11AM
 Lab04
-Goal: To take in a temperature and convert it between f, c, and k. And then display category of the temperature
+Goal: To take in a temperature and convert it between f, c, and k. And then display category of the temperature alongside a weather warning
 */
 #include <stdio.h>
 
