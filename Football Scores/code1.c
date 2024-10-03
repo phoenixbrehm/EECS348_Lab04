@@ -33,69 +33,24 @@ int scoreFinder(int score, int count8param, int count7param, int count6param, in
     int count2 = count2param;
     /*
     Types of scoring
-    8pts    2*2*2*2
-    7pts
-    6pts    2*3
-    3pts
-    2pts
-
     8a+7b+6c+3d+2e=score
-
     */
-   //8*count8+7*count7+6*count6+3*count3
    //We want to use above equation to find the score values. Then once we find a valid one, take the biggest factor and -1
 
-    count2 = (score / 2) - count2;
-    if(count2 < 0){
-        count2 = 0;
-    }
-    count3 = ((score-(2*count2)) / 3) - count3;
-    if(count3 < 0){
-        count3 = 0;
-    }
-    count6 = ((score-(2*count2+3*count3)) / 6) - count6;
-    if(count6 < 0){
-        count6 = 0;
-    }
-    count7 = ((score-(2*count2+3*count3+6*count6)) / 7) - count7;
-    if(count7 < 0){
-        count7 = 0;
-    }
-    count8 = ((score-(2*count2+3*count3+6*count6+7*count7)) / 8) - count8;
-    if(count8 < 0){
-        count8 = 0;
-    }
-    //printf("COUNT 2 = %d\n", count2);
-    //Sleep(500);
 
-
-    if(score-(8*count8+7*count7+6*count6+3*count3+2*count2) == 0){
-        printf("%d TD + 2pt, %d TD + FG, %d TD, %d 3pt FG, %d Safety\n", count8, count7, count6, count3, count2);
-
-        //int sanity = 8*count8+7*count7+6*count6+3*count3+2*count2;
-        //printf("SANITY CHECK: %d\n", sanity);
-
+   //METHOD Incremental Counting
+    for(int i = 0;i <= (score/8)+1;i++){
+        for(int j = 0; j <= (score/7)+1;j++){
+            for(int k = 0; k <= (score/6)+1; k++){
+                for(int l = 0; l <= (score/3)+1; l++){
+                    for(int m = 0; m <= (score/2)+1; m++){
+                        if(8*i+7*j+k*6+l*3+m*2 == score){
+                            printf("%d TD + 2pt, %d TD + FG, %d TD, %d 3pt FG, %d Safety\n", i, j, k, l, m);
+                        }
+                    }
+                }
+            }
+        }
     }
-    else if(count8 == 0 && count7 == 0 && count6 == 0 && count3 == 0 && count2 == 0){       /*Exit Condition*/
-        return 1;
-    }
-
-
-    if(count2 != 0){
-        scoreFinder(score, count8param, count7param, count6param, count3param, count2param+1);
-    }
-    else if(count3 != 0){
-        scoreFinder(score, count8param, count7param, count6param, count3param+1, 0);
-    }
-    else if(count6 != 0){
-        scoreFinder(score, count8param, count7param, count6param+1, 0, 0);
-    }
-    else if(count7 != 0){
-        scoreFinder(score, count8param, count7param+1, 0, 0, 0); /*Will decrement "b" by 1 while keeping a=0*/
-    }
-    else if(count8 != 0){
-        scoreFinder(score, count8param+1, 0, 0, 0, 0); /*Will input value with "a" in our equation decremented by 1 during the count8=(score/8)-count8 line*/
-    }
-         
 
 }
